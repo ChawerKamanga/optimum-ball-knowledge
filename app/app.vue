@@ -1,6 +1,6 @@
 <script setup>
 useHead({
-  title: 'Optimum Systems | Founders World Cup Predictor',
+  title: 'Optimum Ball Knowledge | Founders World Cup Predictor',
   htmlAttrs: {
     class: 'dark',
     lang: 'en'

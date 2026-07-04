@@ -1,7 +1,7 @@
 <template>
   <header class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 z-50 bg-background dark:bg-background border-b border-outline-variant shadow-[0_0_20px_rgba(225,182,56,0.1)] sticky top-0">
     <div class="font-display-lg-mobile text-display-lg-mobile font-extrabold text-primary dark:text-primary tracking-tighter">
-      Optimum Systems
+      Optimum Ball Knowledge
     </div>
 
     <nav class="hidden md:flex gap-base">
