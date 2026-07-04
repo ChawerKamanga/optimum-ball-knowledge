@@ -1,10 +1,14 @@
-# Nuxt Minimal Starter
+# Optimum Ball Knowledge 🏆
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Welcome to the repository for **Optimum Ball Knowledge**, a specialized football prediction platform built by [Optimum Systems Limited](https://optimumsystemsmw.com/). 
 
-## Setup
+This project features a modern, clean UI designed for precision tracking of tournament fixtures, leaderboards, and scoring rules. Built with [Nuxt](https://nuxt.com/docs/getting-started/introduction).
 
-Make sure to install dependencies:
+---
+
+## 🚀 Setup
+
+Make sure to install dependencies before starting:
 
 ```bash
 # npm
@@ -18,9 +22,10 @@ yarn install
 
 # bun
 bun install
+
 ```
 
-## Development Server
+## 💻 Development Server
 
 Start the development server on `http://localhost:3000`:
 
@@ -36,9 +41,10 @@ yarn dev
 
 # bun
 bun run dev
+
 ```
 
-## Production
+## 🏗️ Production
 
 Build the application for production:
 
@@ -54,9 +60,10 @@ yarn build
 
 # bun
 bun run build
+
 ```
 
-Locally preview production build:
+Locally preview the production build:
 
 ```bash
 # npm
@@ -70,6 +77,7 @@ yarn preview
 
 # bun
 bun run preview
+
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check out the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information on hosting this application.
