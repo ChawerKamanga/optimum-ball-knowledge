@@ -1,34 +1,38 @@
 <script setup>
 import { ref, computed } from 'vue'
+import { founderProfiles, worldCupMatches } from '~/data/worldCupData'
 
-// Real Scoreboard Data from World Cup 2026 Predictions
-const matches = ref([
-  { date: '2026-06-28', stage: 'Round of 32', home: 'South Africa', away: 'Canada', score: '0-1', pens: null, type: 'Full Time', winner: 'Canada', predictions: { chawa: 'Canada', shad: 'Canada', vincent: 'Canada' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-06-29', stage: 'Round of 32', home: 'Germany', away: 'Paraguay', score: '1-1', pens: '3-4', type: 'Penalties', winner: 'Paraguay', predictions: { chawa: 'Germany', shad: 'Germany', vincent: 'Germany' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-06-29', stage: 'Round of 32', home: 'Netherlands', away: 'Morocco', score: '1-1', pens: '2-3', type: 'Penalties', winner: 'Morocco', predictions: { chawa: 'Morocco', shad: 'Netherlands', vincent: 'Netherlands' }, points: { chawa: 3, shad: 0, vincent: 0 } },
-  { date: '2026-06-29', stage: 'Round of 32', home: 'Brazil', away: 'Japan', score: '2-1', pens: null, type: 'Full Time', winner: 'Brazil', predictions: { chawa: 'Brazil', shad: 'Brazil', vincent: 'Brazil' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-06-30', stage: 'Round of 32', home: 'France', away: 'Sweden', score: '3-0', pens: null, type: 'Full Time', winner: 'France', predictions: { chawa: 'France', shad: 'France', vincent: 'France' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-06-30', stage: 'Round of 32', home: 'Ivory Coast', away: 'Norway', score: '1-2', pens: null, type: 'Full Time', winner: 'Norway', predictions: { chawa: 'Norway', shad: 'Norway', vincent: 'Norway' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-06-30', stage: 'Round of 32', home: 'Mexico', away: 'Ecuador', score: '2-0', pens: null, type: 'Full Time', winner: 'Mexico', predictions: { chawa: 'Mexico', shad: 'Mexico', vincent: 'Mexico' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-07-01', stage: 'Round of 32', home: 'England', away: 'DR Congo', score: '2-1', pens: null, type: 'Full Time', winner: 'England', predictions: { chawa: 'England', shad: 'England', vincent: 'England' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-07-01', stage: 'Round of 32', home: 'United States', away: 'Bosnia and Herzegovina', score: '2-0', pens: null, type: 'Full Time', winner: 'United States', predictions: { chawa: 'United States', shad: 'United States', vincent: 'United States' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-07-01', stage: 'Round of 32', home: 'Belgium', away: 'Senegal', score: '3-2', pens: null, type: 'Full Time', winner: 'Belgium', predictions: { chawa: 'Senegal', shad: 'Belgium', vincent: 'Senegal' }, points: { chawa: 0, shad: 3, vincent: 0 } },
-  { date: '2026-07-02', stage: 'Round of 32', home: 'Portugal', away: 'Croatia', score: '2-1', pens: null, type: 'Full Time', winner: 'Portugal', predictions: { chawa: 'Portugal', shad: 'Portugal', vincent: 'Croatia' }, points: { chawa: 3, shad: 3, vincent: 0 } },
-  { date: '2026-07-02', stage: 'Round of 32', home: 'Spain', away: 'Austria', score: '3-0', pens: null, type: 'Full Time', winner: 'Spain', predictions: { chawa: 'Spain', shad: 'Spain', vincent: 'Spain' }, points: { chawa: 3, shad: 3, vincent: 3 } },
-  { date: '2026-07-02', stage: 'Round of 32', home: 'Switzerland', away: 'Algeria', score: '2-0', pens: null, type: 'Full Time', winner: 'Switzerland', predictions: { chawa: 'Switzerland', shad: 'Switzerland', vincent: 'Algeria' }, points: { chawa: 3, shad: 3, font: 0, vincent: 0 } },
-  { date: '2026-07-03', stage: 'Round of 32', home: 'Australia', away: 'Egypt', score: '1-1', pens: '2-4', type: 'Penalties', winner: 'Egypt', predictions: { chawa: 'Australia', shad: 'Egypt', vincent: 'Australia' }, points: { chawa: 0, shad: 3, vincent: 0 } },
-  { date: '2026-07-03', stage: 'Round of 32', home: 'Argentina', away: 'Cape Verde', score: '3-2', pens: null, type: 'Full Time', winner: 'Argentina', predictions: { chawa: 'Argentina', shad: 'Cape Verde', vincent: 'Argentina' }, points: { chawa: 3, shad: 0, vincent: 3 } },
-  { date: '2026-07-03', stage: 'Round of 32', home: 'Colombia', away: 'Ghana', score: '1-0', pens: null, type: 'Full Time', winner: 'Colombia', predictions: { chawa: 'Ghana', shad: 'Ghana', vincent: 'Colombia' }, points: { chawa: 0, shad: 0, vincent: 3 } },
-  // Round of 16 Matches
-  { date: '2026-07-04', stage: 'Round of 16', home: 'Paraguay', away: 'France', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'France', shad: 'France', vincent: 'France' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-07-04', stage: 'Round of 16', home: 'Canada', away: 'Morocco', score: '0-3', pens: null, type: 'Full Time', winner: 'Morocco', predictions: { chawa: 'Morocco', shad: 'Canada', vincent: 'Canada' }, points: { chawa: 3, shad: 0, vincent: 0 } },
-  { date: '2026-07-05', stage: 'Round of 16', home: 'Brazil', away: 'Norway', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Norway', shad: 'Brazil', vincent: 'Norway' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-07-05', stage: 'Round of 16', home: 'Mexico', away: 'England', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'England', shad: 'England', vincent: 'England' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-07-06', stage: 'Round of 16', home: 'Portugal', away: 'Spain', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Spain', shad: 'Portugal', vincent: 'Spain' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-07-06', stage: 'Round of 16', home: 'United States', away: 'Belgium', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'United States', shad: 'Belgium', vincent: 'Belgium' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-07-07', stage: 'Round of 16', home: 'Argentina', away: 'Egypt', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Argentina', shad: 'Argentina', vincent: 'Argentina' }, points: { chawa: 0, shad: 0, vincent: 0 } },
-  { date: '2026-07-07', stage: 'Round of 16', home: 'Switzerland', away: 'Colombia', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Switzerland', shad: 'Switzerland', vincent: 'Colombia' }, points: { chawa: 0, shad: 0, vincent: 0 } }
-])
+// Shared World Cup Data from one source of truth
+const matches = ref(worldCupMatches)
+
+const founderById = computed(() => {
+  return founderProfiles.reduce((acc, founder) => {
+    acc[founder.id] = founder
+    return acc
+  }, {})
+})
+
+const founderStats = computed(() => {
+  const stats = {
+    chawa: { points: 0, correct: 0 },
+    shad: { points: 0, correct: 0 },
+    vincent: { points: 0, correct: 0 }
+  }
+
+  matches.value
+    .filter(match => match.score !== null)
+    .forEach(match => {
+      stats.chawa.points += match.points.chawa
+      stats.shad.points += match.points.shad
+      stats.vincent.points += match.points.vincent
+
+      if (match.points.chawa > 0) stats.chawa.correct += 1
+      if (match.points.shad > 0) stats.shad.correct += 1
+      if (match.points.vincent > 0) stats.vincent.correct += 1
+    })
+
+  return stats
+})
 
 // Filter Selection State
 const selectedStage = ref('All')
@@ -98,13 +102,13 @@ const toggleFilter = () => {
           <div class="glass-card neon-border w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs">
             <div class="absolute -top-6 bg-secondary text-on-secondary w-10 h-10 rounded-full flex items-center justify-center font-bold text-title-lg">2</div>
             <div class="w-20 h-20 rounded-full overflow-hidden mb-sm border-2 border-outline-variant">
-              <img class="w-full h-full object-cover" src="http://optimumsystemsmw.com/img/shad.jpeg"/>
+              <img class="w-full h-full object-cover" :src="founderById.shad.avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">Shad</h3>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ founderById.shad.name }}</h3>
             <div class="flex items-center gap-xs mt-xs">
-              <span class="font-label-bold text-[10px] text-secondary tracking-widest uppercase">12 Correct Picks</span>
+              <span class="font-label-bold text-[10px] text-secondary tracking-widest uppercase">{{ founderStats.shad.correct }} Correct Picks</span>
             </div>
-            <p class="text-primary font-bold text-body-lg mt-xs">36 PTS</p>
+            <p class="text-primary font-bold text-body-lg mt-xs">{{ founderStats.shad.points }} PTS</p>
           </div>
         </div>
 
@@ -113,14 +117,14 @@ const toggleFilter = () => {
           <div class="glass-card neon-border w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs transform scale-105 shadow-xl">
             <div class="absolute -top-8 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center font-bold text-headline-md glow-primary">1</div>
             <div class="w-24 h-24 rounded-full overflow-hidden mb-sm border-4 border-primary">
-              <img class="w-full h-full object-cover" src="https://res.cloudinary.com/dejkd5he6/image/upload/v1772186782/chawa_xwjrzw.jpg"/>
+              <img class="w-full h-full object-cover" :src="founderById.chawa.avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">Chawanangwa</h3>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ founderById.chawa.name }}</h3>
             <div class="flex items-center gap-xs mt-xs">
               <span class="material-symbols-outlined text-primary text-sm" data-icon="verified">verified</span>
               <span class="font-label-bold text-label-bold text-primary tracking-widest">Ball Knower</span>
             </div>
-            <p class="text-primary font-extrabold text-title-lg mt-xs">39 PTS <span class="text-xs font-normal text-on-surface-variant">(13 Picks)</span></p>
+            <p class="text-primary font-extrabold text-title-lg mt-xs">{{ founderStats.chawa.points }} PTS <span class="text-xs font-normal text-on-surface-variant">({{ founderStats.chawa.correct }} Picks)</span></p>
           </div>
         </div>
 
@@ -129,13 +133,13 @@ const toggleFilter = () => {
           <div class="glass-card w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs">
             <div class="absolute -top-6 bg-tertiary-container text-on-tertiary-container w-10 h-10 rounded-full flex items-center justify-center font-bold text-title-lg">3</div>
             <div class="w-20 h-20 rounded-full overflow-hidden mb-sm border-2 border-outline-variant">
-              <img class="w-full h-full object-cover" src="https://optimumsystemsmw.com/img/vin.jpeg"/>
+              <img class="w-full h-full object-cover" :src="founderById.vincent.avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">Vincent</h3>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ founderById.vincent.name }}</h3>
             <div class="flex items-center gap-xs mt-xs">
-              <span class="font-label-bold text-[10px] text-on-surface-variant tracking-widest uppercase">10 Correct Picks</span>
+              <span class="font-label-bold text-[10px] text-on-surface-variant tracking-widest uppercase">{{ founderStats.vincent.correct }} Correct Picks</span>
             </div>
-            <p class="text-primary font-bold text-body-sm mt-xs">30 PTS</p>
+            <p class="text-primary font-bold text-body-sm mt-xs">{{ founderStats.vincent.points }} PTS</p>
           </div>
         </div>
 

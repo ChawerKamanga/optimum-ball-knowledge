@@ -5,9 +5,9 @@
     </div>
 
     <nav class="hidden md:flex gap-base">
-      <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-bold text-label-bold" href="#">Fixtures</a>
-      <a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-variant/30 transition-colors px-3 py-1 rounded font-label-bold text-label-bold" href="#">Leaderboard</a>
-      <a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-variant/30 transition-colors px-3 py-1 rounded font-label-bold text-label-bold" href="#">Rules</a>
+      <NuxtLink :class="navLinkClass('/')" to="/">Fixtures</NuxtLink>
+      <NuxtLink :class="navLinkClass('/leaderboard')" to="/leaderboard">Leaderboard</NuxtLink>
+      <NuxtLink :class="navLinkClass('/rules')" to="/rules">Rules</NuxtLink>
     </nav>
 
     <div class="flex items-center gap-sm">
@@ -20,3 +20,15 @@
     </div>
   </header>
 </template>
+
+<script setup lang="ts">
+const route = useRoute()
+
+const navLinkClass = (path: string) => {
+  if (route.path === path) {
+    return 'text-primary font-bold border-b-2 border-primary pb-1 font-label-bold text-label-bold'
+  }
+
+  return 'text-on-surface-variant font-medium hover:text-primary hover:bg-surface-variant/30 transition-colors px-3 py-1 rounded font-label-bold text-label-bold'
+}
+</script>

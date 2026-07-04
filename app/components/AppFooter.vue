@@ -5,13 +5,13 @@
     </div>
 
     <div class="flex gap-md">
-      <a class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" href="#">Tournament Rules</a>
-      <a class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" href="#">Privacy Policy</a>
-      <a class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" href="#">Contact Support</a>
+      <NuxtLink class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" to="#">Tournament Rules</NuxtLink>
+      <NuxtLink class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" to="#">Privacy Policy</NuxtLink>
+      <NuxtLink class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" to="#">Contact Support</NuxtLink>
     </div>
 
     <div class="text-on-surface-variant font-body-sm">
-      &copy; 2024 Optimum Ball Knowledge. All Rights Reserved.
+      &copy; 2026 Optimum Ball Knowledge. All Rights Reserved.
     </div>
   </footer>
 </template>
