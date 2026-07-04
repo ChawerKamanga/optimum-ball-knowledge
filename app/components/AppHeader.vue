@@ -11,12 +11,15 @@
     </nav>
 
     <div class="flex items-center gap-sm">
-      <button class="material-symbols-outlined text-primary hover:scale-95 transition-transform" type="button" data-icon="notifications">
-        notifications
-      </button>
-      <button class="material-symbols-outlined text-primary hover:scale-95 transition-transform" type="button" data-icon="account_circle">
-        account_circle
-      </button>
+      <a 
+        href="https://optimumsystemsmw.com/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="material-symbols-outlined text-primary hover:scale-95 transition-transform" 
+        title="About Optimum Systems"
+      >
+        help
+      </a>
     </div>
   </header>
 </template>

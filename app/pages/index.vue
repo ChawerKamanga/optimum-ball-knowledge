@@ -205,7 +205,7 @@ const toggleFilter = () => {
 
             <!-- Contextual Metrics Middle Scoreboard -->
             <div class="flex flex-col items-center gap-xs">
-              <div v-if="match.score" class="font-display-lg text-display-lg text-primary tracking-tighter">
+              <div v-if="match.score" class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter">
                 {{ match.score }}
                 <div v-if="match.pens" class="text-xs text-on-surface-variant font-sans text-center tracking-normal mt-0.5">
                   ({{ match.pens }} Pens)

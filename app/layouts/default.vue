@@ -6,7 +6,7 @@
       <slot />
     </main>
 
-    <AppAdminPanel />
+
     <AppMobileNavigation />
     <AppFooter />
   </div>

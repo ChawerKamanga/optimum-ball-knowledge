@@ -5,9 +5,8 @@
     </div>
 
     <div class="flex gap-md">
-      <NuxtLink class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" to="#">Tournament Rules</NuxtLink>
-      <NuxtLink class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" to="#">Privacy Policy</NuxtLink>
-      <NuxtLink class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" to="#">Contact Support</NuxtLink>
+
+      <a href="https://optimumsystemsmw.com/" class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" target="_blank" rel="noopener noreferrer">About Us</a>
     </div>
 
     <div class="text-on-surface-variant font-body-sm">
