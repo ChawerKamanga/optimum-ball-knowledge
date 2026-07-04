@@ -1,0 +1,22 @@
+<template>
+  <header class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 z-50 bg-background dark:bg-background border-b border-outline-variant shadow-[0_0_20px_rgba(225,182,56,0.1)] sticky top-0">
+    <div class="font-display-lg-mobile text-display-lg-mobile font-extrabold text-primary dark:text-primary tracking-tighter">
+      Optimum Systems
+    </div>
+
+    <nav class="hidden md:flex gap-base">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-bold text-label-bold" href="#">Fixtures</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-variant/30 transition-colors px-3 py-1 rounded font-label-bold text-label-bold" href="#">Leaderboard</a>
+      <a class="text-on-surface-variant font-medium hover:text-primary hover:bg-surface-variant/30 transition-colors px-3 py-1 rounded font-label-bold text-label-bold" href="#">Rules</a>
+    </nav>
+
+    <div class="flex items-center gap-sm">
+      <button class="material-symbols-outlined text-primary hover:scale-95 transition-transform" type="button" data-icon="notifications">
+        notifications
+      </button>
+      <button class="material-symbols-outlined text-primary hover:scale-95 transition-transform" type="button" data-icon="account_circle">
+        account_circle
+      </button>
+    </div>
+  </header>
+</template>
