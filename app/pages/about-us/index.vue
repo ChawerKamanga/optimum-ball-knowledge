@@ -27,7 +27,7 @@ onMounted(() => {
             About Optimum Systems
           </h1>
           <p class="text-on-surface-variant font-body-md max-w-2xl">
-            From deploying modern enterprise digital infrastructure to arguing over high-stakes football margins—precision is everything we do.
+            From deploying modern enterprise digital infrastructure to arguing over high-stakes football margins precision is everything we do.
           </p>
         </header>
 
@@ -69,7 +69,7 @@ onMounted(() => {
                   <h3 class="font-headline-md text-headline-md md:font-headline-lg md:text-headline-lg text-white">Why This App?</h3>
                 </div>
                 <p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">
-                  Look, we build complex automated structures for work—but we live for the World Cup. 
+                  Look, we build complex automated structures for work but we live for the World Cup. 
                 </p>
                 <p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">
                   Instead of tracking predictions inside messy WhatsApp groups or prone-to-error local spreadsheets, we built a robust, custom-engineered platform to crown the undisputed <strong>"Ball Knower"</strong> among the founders.
