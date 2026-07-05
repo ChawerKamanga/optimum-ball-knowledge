@@ -8,18 +8,18 @@
       <NuxtLink :class="navLinkClass('/')" to="/">Fixtures</NuxtLink>
       <NuxtLink :class="navLinkClass('/leaderboard')" to="/leaderboard">Leaderboard</NuxtLink>
       <NuxtLink :class="navLinkClass('/rules')" to="/rules">Rules</NuxtLink>
+      <NuxtLink :class="navLinkClass('/about-us')" to="/about-us">About Us</NuxtLink>
     </nav>
 
     <div class="flex items-center gap-sm">
-      <a 
-        href="https://optimumsystemsmw.com/" 
-        target="_blank" 
-        rel="noopener noreferrer" 
+      <NuxtLink 
+        to="/about-us" 
         class="material-symbols-outlined text-primary hover:scale-95 transition-transform" 
+        :class="{ 'opacity-50 pointer-events-none': route.path === '/about-us' }"
         title="About Optimum Systems"
       >
         help
-      </a>
+      </NuxtLink>
     </div>
   </header>
 </template>

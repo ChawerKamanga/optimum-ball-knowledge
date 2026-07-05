@@ -13,17 +13,13 @@
 
     <NuxtLink :class="mobileNavLinkClass('/rules')" to="/rules">
       <span class="material-symbols-outlined">gavel</span>
+      <span class="font-label-bold text-label-bold">Rules</span>
     </NuxtLink>
 
-    <a 
-      href="https://optimumsystemsmw.com/" 
-      target="_blank" 
-      rel="noopener noreferrer" 
-      class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"
-    >
+    <NuxtLink :class="mobileNavLinkClass('/about-us')" to="/about-us">
       <span class="material-symbols-outlined">help</span>
       <span class="font-label-bold text-label-bold">About</span>
-    </a>
+    </NuxtLink>
 
   </nav>
 </template>
