@@ -18,14 +18,14 @@ onMounted(() => {
 <template>
   <div class="min-h-screen flex flex-col bg-background text-on-surface font-body-md pt-20">
    
-
     <main class="flex-grow radial-bg relative">
-      <div class="max-w-container-max mx-auto px-margin-desktop py-12">
+      <!-- FIXED: Expanded x-axis padding to make cards wider on mobile panels -->
+      <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
     
-
         <!-- Page Header -->
         <header class="mb-16">
-          <h1 class="font-display-lg text-display-lg text-white mb-4">Founders Rulebook</h1>
+          <!-- FIXED: Responsive text sizing downscaled for mobile views -->
+          <h1 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg text-white mb-4">Founders Rulebook</h1>
           <p class="text-on-surface-variant font-body-md max-w-2xl">The definitive guide to the Optimum World Cup predictor. Precision scoring, elite competition, and absolute clarity on the path to the trophy.</p>
         </header>
 
@@ -33,7 +33,7 @@ onMounted(() => {
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8">
           
           <!-- Scoring Card -->
-          <div class="md:col-span-5 glass-card p-10 flex flex-col justify-between group rounded-xl">
+          <div class="md:col-span-5 glass-card p-6 md:p-10 flex flex-col justify-between group rounded-xl">
             <div>
               <div class="flex items-center gap-3 mb-6">
                 <span class="material-symbols-outlined text-primary text-3xl">analytics</span>
@@ -43,18 +43,18 @@ onMounted(() => {
             </div>
             <div class="flex items-end gap-12">
               <div class="flex flex-col">
-                <span class="text-primary font-display-lg text-6xl mb-2">+3</span>
+                <span class="text-primary font-display-lg text-5xl md:text-6xl mb-2">+3</span>
                 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Correct Result</span>
               </div>
               <div class="flex flex-col">
-                <span class="text-white opacity-20 font-display-lg text-6xl mb-2">0</span>
+                <span class="text-white opacity-20 font-display-lg text-5xl md:text-6xl mb-2">0</span>
                 <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">Incorrect</span>
               </div>
             </div>
           </div>
 
           <!-- Match Condition Card -->
-          <div class="md:col-span-7 glass-card p-10 group relative overflow-hidden rounded-xl">
+          <div class="md:col-span-7 glass-card p-6 md:p-10 group relative overflow-hidden rounded-xl">
             <div class="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
               <span class="material-symbols-outlined text-9xl" style="font-variation-settings: 'FILL' 1;">trophy</span>
             </div>
@@ -72,7 +72,7 @@ onMounted(() => {
           </div>
 
           <!-- Tie-Breaker Card -->
-          <div class="md:col-span-12 glass-card p-10 flex flex-col md:flex-row items-center justify-between gap-8 group rounded-xl">
+          <div class="md:col-span-12 glass-card p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-8 group rounded-xl">
             <div class="max-w-xl">
               <div class="flex items-center gap-3 mb-4">
                 <span class="material-symbols-outlined text-primary text-3xl">psychology</span>
@@ -81,9 +81,10 @@ onMounted(() => {
               <h4 class="font-label-sm text-label-sm text-primary mb-4 uppercase tracking-widest">Primary Tie-Breaker</h4>
               <p class="text-on-surface-variant font-body-md">If the leaderboard is deadlocked, the winner is determined by the most successful solo picks. A "Maverick" pick is defined as a winning prediction where you were in the bottom 10% of participants for that specific match choice.</p>
             </div>
-            <div class="w-full md:w-auto flex flex-col items-center bg-surface-container-lowest p-8 border border-outline-variant rounded-lg">
-              <span class="font-display-lg text-display-lg text-white mb-2">Maverick</span>
-              <div class="w-full h-1 bg-outline-variant mb-2 rounded-full overflow-hidden">
+            <div class="w-full md:w-auto flex flex-col items-center bg-surface-container-lowest p-6 md:p-8 border border-outline-variant rounded-lg">
+              <!-- FIXED: Downscaled Maverick heading on small screens -->
+              <span class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg text-white mb-2">Maverick</span>
+              <div class="w-full h-1 bg-outline-variant mb-2 rounded-full overflow-hidden min-w-[120px]">
                 <div class="w-1/3 h-full bg-primary gold-glow rounded-full"></div>
               </div>
               <span class="font-label-sm text-label-sm text-on-surface-variant">Uniqueness Bonus Active</span>
@@ -92,12 +93,13 @@ onMounted(() => {
         </div>
 
         <!-- Banter Clause -->
-        <div class="gold-border-outline bg-surface p-12 md:p-16 text-center relative overflow-hidden rounded-xl">
+        <div class="gold-border-outline bg-surface p-6 md:p-16 text-center relative overflow-hidden rounded-xl">
           <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#e1b638 1px, transparent 1px); background-size: 20px 20px;"></div>
           <div class="relative z-10">
             <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-6 block">The Founder's Constitution</span>
-            <h2 class="font-display-lg text-display-lg text-white mb-8">Article IV: The Banter Clause</h2>
-            <p class="font-body-md text-on-surface-variant max-w-3xl mx-auto italic leading-relaxed text-lg">
+            <!-- FIXED: Scaled down Article IV header so it wraps cleanly without blowing up the layout -->
+            <h2 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg text-white mb-8">Article IV: The Banter Clause</h2>
+            <p class="font-body-md text-on-surface-variant max-w-3xl mx-auto italic leading-relaxed text-base md:text-lg">
               "In the event of unforeseen statistical anomalies, software glitches, or general disagreement over VAR decisions, all disputes shall be settled via public Slack banter. Decisions are final once a majority of participants react with a 👑 or 🦁 emoji. Technicalities are secondary to founder intuition and gut feelings."
             </p>
             <div class="mt-12 flex justify-center gap-8 opacity-40">
