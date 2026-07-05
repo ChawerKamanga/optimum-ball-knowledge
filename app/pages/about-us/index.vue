@@ -20,15 +20,6 @@ onMounted(() => {
     
     <main class="flex-grow radial-bg relative">
       <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">
-        
-        <!-- Back Navigation -->
-        <div class="mb-8">
-          <NuxtLink to="/" class="group flex items-center space-x-2 w-fit text-primary font-body-md text-body-md hover:underline transition-all">
-            <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
-            <span>Back to Fixtures</span>
-          </NuxtLink>
-        </div>
-
         <!-- Page Header -->
         <header class="mb-16">
           <span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.4em] mb-4 block">Who We Are</span>

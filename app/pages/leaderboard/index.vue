@@ -84,7 +84,7 @@ onMounted(() => {
       <div class="mb-8">
         <!-- RESTORED YOUR CUSTOM TYPOGRAPHY TOKENS WITH RESPONSIVE SIZING -->
         <h1 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg mt-4 text-on-surface">
-          Pirate Kingship Standings
+          The Championship Standings
         </h1>
         <p class="font-body-md text-body-md text-on-surface-variant">The Three Founders Battle for World Cup Glory</p>
       </div>
