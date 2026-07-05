@@ -48,40 +48,27 @@ const getTodayString = () => {
 
 const todayDateStr = computed(() => getTodayString())
 
-// Compute Smart Filtered and Dynamically Sorted Pipeline Order
+// Compute Smart Filtered Pipeline Order
 const filteredMatches = computed(() => {
-  const today = todayDateStr.value
-  
-  // 1. Initial stage filter evaluation
-  let targetSet = matches.value
+  // Scenario A: A specific round is filtered -> Show EVERYTHING in that round sorted chronologically
   if (selectedStage.value !== 'All') {
-    targetSet = matches.value.filter(m => m.stage === selectedStage.value)
+    return matches.value
+      .filter(m => m.stage === selectedStage.value)
+      .sort((a, b) => a.date.localeCompare(b.date))
   }
 
-  // 2. Perform intelligent structural ordering logic
-  return [...targetSet].sort((a, b) => {
-    // Check match relationship with today's calendar string
-    const isAToday = a.date === today
-    const isBToday = b.date === today
+  // Scenario B: Global overview ('All') -> Show snippet (1 next upcoming match + 2 latest completed results)
+  const upcoming = matches.value
+    .filter(m => m.score === null)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 1)
 
-    if (isAToday && !isBToday) return -1
-    if (!isAToday && isBToday) return 1
+  const results = matches.value
+    .filter(m => m.score !== null)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 2)
 
-    // Evaluate future scopes
-    const isAFuture = a.date > today
-    const isBFuture = b.date > today
-
-    if (isAFuture && !isBFuture) return -1
-    if (!isAFuture && isBFuture) return 1
-
-    // If both upcoming/future: Sort chronologically (closest chronologically first)
-    if (isAFuture && isBFuture) {
-      return a.date.localeCompare(b.date)
-    }
-
-    // If both historical/past: Sort reverse-chronologically (most recent results at top)
-    return b.date.localeCompare(a.date)
-  })
+  return [...upcoming, ...results]
 })
 
 // Toggle Stage Filters
@@ -151,7 +138,9 @@ const toggleFilter = () => {
       <div class="flex justify-between items-end mb-md">
         <div>
           <h2 class="font-headline-md text-headline-md text-primary">Tournament Pipeline</h2>
-          <p class="text-on-surface-variant font-body-sm">Stage Scope: {{ selectedStage }}</p>
+          <p class="text-on-surface-variant font-body-sm">
+            {{ selectedStage === 'All' ? 'Next Fixture & 2 Latest Results' : `Showing All Matches for ${selectedStage}` }}
+          </p>
         </div>
         <button 
           @click="toggleFilter" 
@@ -170,7 +159,7 @@ const toggleFilter = () => {
           class="glass-card rounded-xl overflow-hidden transition-all duration-300"
           :class="[
             match.date === todayDateStr ? 'border border-primary/40 shadow-[0_0_15px_rgba(225,182,56,0.15)] scale-[1.01]' : '',
-            match.score === null && match.date !== todayDateStr ? 'opacity-75 hover:opacity-100' : ''
+            match.score === null && match.date !== todayDateStr ? 'opacity-90 hover:opacity-100' : ''
           ]"
         >
           <!-- Meta Header Stripe -->
@@ -183,9 +172,13 @@ const toggleFilter = () => {
                 <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                 <span class="text-red-400 font-bold tracking-wider">TODAY • LIVE/UPCOMING</span>
               </template>
+              <template v-else-if="match.score === null">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <span class="text-amber-400 font-bold tracking-wider">UPCOMING FIXTURE</span>
+              </template>
               <template v-else>
-                <span :class="['w-1.5 h-1.5 rounded-full', match.score !== null ? 'bg-emerald-500' : 'bg-amber-500']"></span>
-                {{ match.type }}
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                RESULT
               </template>
             </span>
             <span class="text-on-surface-variant text-[11px] font-medium tracking-wide uppercase">
@@ -233,7 +226,7 @@ const toggleFilter = () => {
                 class="flex flex-col items-center p-xs rounded transition-all"
                 :class="match.score ? (match.points.chawa > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
               >
-                <span class="text-[9px] uppercase tracking-wider opacity-70">Chawa (+{{ match.points.chawa }}pts)</span>
+                <span class="text-[9px] uppercase tracking-wider opacity-70">Chawa (+{{ match.points.chawa || 0 }}pts)</span>
                 <span class="font-label-bold text-[11px]">{{ match.predictions.chawa }}</span>
               </div>
 
@@ -242,7 +235,7 @@ const toggleFilter = () => {
                 class="flex flex-col items-center p-xs rounded transition-all"
                 :class="match.score ? (match.points.shad > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
               >
-                <span class="text-[9px] uppercase tracking-wider opacity-70">Shad (+{{ match.points.shad }}pts)</span>
+                <span class="text-[9px] uppercase tracking-wider opacity-70">Shad (+{{ match.points.shad || 0 }}pts)</span>
                 <span class="font-label-bold text-[11px]">{{ match.predictions.shad }}</span>
               </div>
 
@@ -251,7 +244,7 @@ const toggleFilter = () => {
                 class="flex flex-col items-center p-xs rounded transition-all"
                 :class="match.score ? (match.points.vincent > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
               >
-                <span class="text-[9px] uppercase tracking-wider opacity-70">Vincent (+{{ match.points.vincent }}pts)</span>
+                <span class="text-[9px] uppercase tracking-wider opacity-70">Vincent (+{{ match.points.vincent || 0 }}pts)</span>
                 <span class="font-label-bold text-[11px]">{{ match.predictions.vincent }}</span>
               </div>
             </div>

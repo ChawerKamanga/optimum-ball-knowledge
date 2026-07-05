@@ -24,7 +24,7 @@ export const founderProfiles: FounderProfile[] = [
   {
     id: 'chawa',
     name: 'Chawanangwa',
-    role: 'Defending Champion',
+    role: 'Pirate King',
     avatar: 'https://res.cloudinary.com/dejkd5he6/image/upload/v1772186782/chawa_xwjrzw.jpg'
   },
   {
@@ -36,7 +36,7 @@ export const founderProfiles: FounderProfile[] = [
   {
     id: 'vincent',
     name: 'Vincent',
-    role: 'The Underdog',
+    role: 'The Comeback King',
     avatar: 'https://optimumsystemsmw.com/img/vin.jpeg'
   }
 ]
@@ -58,9 +58,9 @@ export const worldCupMatches: Match[] = [
   { date: '2026-07-03', stage: 'Round of 32', home: 'Australia', away: 'Egypt', score: '1-1', pens: '2-4', type: 'Penalties', winner: 'Egypt', predictions: { chawa: 'Australia', shad: 'Egypt', vincent: 'Australia' }, points: { chawa: 0, shad: 3, vincent: 0 } },
   { date: '2026-07-03', stage: 'Round of 32', home: 'Argentina', away: 'Cape Verde', score: '3-2', pens: null, type: 'Full Time', winner: 'Argentina', predictions: { chawa: 'Argentina', shad: 'Cape Verde', vincent: 'Argentina' }, points: { chawa: 3, shad: 0, vincent: 3 } },
   { date: '2026-07-03', stage: 'Round of 32', home: 'Colombia', away: 'Ghana', score: '1-0', pens: null, type: 'Full Time', winner: 'Colombia', predictions: { chawa: 'Ghana', shad: 'Ghana', vincent: 'Colombia' }, points: { chawa: 0, shad: 0, vincent: 3 } },
-  { date: '2026-07-04', stage: 'Round of 16', home: 'Paraguay', away: 'France', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'France', shad: 'France', vincent: 'France' }, points: { chawa: 0, shad: 0, vincent: 0 } },
+  { date: '2026-07-04', stage: 'Round of 16', home: 'Paraguay', away: 'France', score: '0-1', pens: null, type: 'Full Time', winner: 'France', predictions: { chawa: 'France', shad: 'France', vincent: 'France' }, points: { chawa: 3, shad: 3, vincent: 3 } },
   { date: '2026-07-04', stage: 'Round of 16', home: 'Canada', away: 'Morocco', score: '0-3', pens: null, type: 'Full Time', winner: 'Morocco', predictions: { chawa: 'Morocco', shad: 'Canada', vincent: 'Canada' }, points: { chawa: 3, shad: 0, vincent: 0 } },
-  { date: '2026-07-05', stage: 'Round of 16', home: 'Brazil', away: 'Norway', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Norway', shad: 'Brazil', vincent: 'Norway' }, points: { chawa: 0, shad: 0, vincent: 0 } },
+  { date: '2026-07-05', stage: 'Round of 16', home: 'Brazil', away: 'Norway', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Brazil', shad: 'Norway', vincent: 'Brazil' }, points: { chawa: 0, shad: 0, vincent: 0 } },
   { date: '2026-07-05', stage: 'Round of 16', home: 'Mexico', away: 'England', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'England', shad: 'England', vincent: 'England' }, points: { chawa: 0, shad: 0, vincent: 0 } },
   { date: '2026-07-06', stage: 'Round of 16', home: 'Portugal', away: 'Spain', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'Spain', shad: 'Portugal', vincent: 'Spain' }, points: { chawa: 0, shad: 0, vincent: 0 } },
   { date: '2026-07-06', stage: 'Round of 16', home: 'United States', away: 'Belgium', score: null, pens: null, type: 'Upcoming', winner: null, predictions: { chawa: 'United States', shad: 'Belgium', vincent: 'Belgium' }, points: { chawa: 0, shad: 0, vincent: 0 } },
