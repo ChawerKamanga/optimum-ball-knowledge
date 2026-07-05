@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-background text-on-surface font-body-md pt-20">
+  <div class="min-h-screen flex flex-col bg-background text-on-surface font-body-md pt-10 md:pt-24">
     
     <main class="flex-grow radial-bg relative">
       <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12">

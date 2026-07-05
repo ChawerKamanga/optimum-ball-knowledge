@@ -5,9 +5,9 @@
       Optimum Ball Knowledge
     </div>
 
-    <div class="flex gap-md px-4 md:px-0">
+    <!-- <div class="flex gap-md px-4 md:px-0">
       <a href="https://optimumsystemsmw.com/" class="text-on-surface-variant font-label-bold text-label-bold hover:text-primary underline transition-all" target="_blank" rel="noopener noreferrer">About Us</a>
-    </div>
+    </div> -->
 
     <div class="text-on-surface-variant font-body-sm px-4 md:px-0 text-center md:text-right">
       &copy; 2026 Optimum Ball Knowledge. All Rights Reserved.

@@ -79,14 +79,9 @@ onMounted(() => {
 
 
 
-    <main class="flex-grow pt-24 px-4 md:px-gutter max-w-container-max mx-auto w-full">
+    <main class="flex-grow pt-10 md:pt-24 px-4 md:px-gutter max-w-container-max mx-auto w-full">
       <!-- Back Navigation -->
       <div class="mb-8">
-        <NuxtLink to="/"
-          class="group flex items-center space-x-2 w-fit text-primary font-body-md text-body-md hover:underline transition-all">
-          <span class="material-symbols-outlined transition-transform group-hover:-translate-x-1">arrow_back</span>
-          <span>Back to Fixtures</span>
-        </NuxtLink>
         <!-- RESTORED YOUR CUSTOM TYPOGRAPHY TOKENS WITH RESPONSIVE SIZING -->
         <h1 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg mt-4 text-on-surface">
           Pirate Kingship Standings

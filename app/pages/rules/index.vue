@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-background text-on-surface font-body-md pt-20">
+  <div class="min-h-screen flex flex-col bg-background text-on-surface font-body-md pt-10 md:pt-24">
    
     <main class="flex-grow radial-bg relative">
       <!-- FIXED: Expanded x-axis padding to make cards wider on mobile panels -->
