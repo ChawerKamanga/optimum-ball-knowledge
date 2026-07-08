@@ -14,24 +14,55 @@ const founderById = computed(() => {
 
 const founderStats = computed(() => {
   const stats = {
-    chawa: { points: 0, correct: 0 },
-    shad: { points: 0, correct: 0 },
-    vincent: { points: 0, correct: 0 }
+    chawa: { points: 0, correct: 0, maverickWins: 0 },
+    shad: { points: 0, correct: 0, maverickWins: 0 },
+    vincent: { points: 0, correct: 0, maverickWins: 0 }
   }
 
-  matches.value
-    .filter(match => match.score !== null)
-    .forEach(match => {
-      stats.chawa.points += match.points.chawa
-      stats.shad.points += match.points.shad
-      stats.vincent.points += match.points.vincent
+  const completedMatches = matches.value.filter(match => match.score !== null)
 
-      if (match.points.chawa > 0) stats.chawa.correct += 1
-      if (match.points.shad > 0) stats.shad.correct += 1
-      if (match.points.vincent > 0) stats.vincent.correct += 1
+  completedMatches.forEach(match => {
+    // Calculate points and correct picks
+    stats.chawa.points += match.points.chawa
+    stats.shad.points += match.points.shad
+    stats.vincent.points += match.points.vincent
+
+    if (match.points.chawa > 0) stats.chawa.correct += 1
+    if (match.points.shad > 0) stats.shad.correct += 1
+    if (match.points.vincent > 0) stats.vincent.correct += 1
+
+    // Calculate maverick wins
+    const predictionCounts = Object.values(match.predictions).reduce((acc, pick) => {
+      acc[pick] = (acc[pick] || 0) + 1
+      return acc
+    }, {})
+
+    Object.keys(stats).forEach(founderId => {
+      const founderPick = match.predictions[founderId]
+      const isMaverickPick = predictionCounts[founderPick] === 1
+      if (isMaverickPick && match.points[founderId] > 0) {
+        stats[founderId].maverickWins += 1
+      }
     })
+  })
 
   return stats
+})
+
+const sortedFounders = computed(() => {
+  return founderProfiles
+    .map(founder => ({
+      ...founder,
+      ...founderStats.value[founder.id]
+    }))
+    .sort((a, b) => {
+      // First sort by total points
+      if (b.points !== a.points) {
+        return b.points - a.points
+      }
+      // If points are tied, sort by maverick wins
+      return b.maverickWins - a.maverickWins
+    })
 })
 
 // Filter Selection State
@@ -92,49 +123,49 @@ const toggleFilter = () => {
     <section class="mb-xl">
       <div class="flex flex-col md:flex-row items-end justify-center gap-gutter md:gap-lg mt-lg">
         
-        <!-- 2nd Place: Shad (36 PTS) -->
-        <div class="order-2 md:order-1 w-full md:w-1/4 flex flex-col items-center">
+        <!-- 2nd Place -->
+        <div v-if="sortedFounders[1]" class="order-2 md:order-1 w-full md:w-1/4 flex flex-col items-center">
           <div class="glass-card neon-border w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs">
             <div class="absolute -top-6 bg-secondary text-on-secondary w-10 h-10 rounded-full flex items-center justify-center font-bold text-title-lg">2</div>
             <div class="w-20 h-20 rounded-full overflow-hidden mb-sm border-2 border-outline-variant">
-              <img class="w-full h-full object-cover" :src="founderById.shad.avatar"/>
+              <img class="w-full h-full object-cover" :src="sortedFounders[1].avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">{{ founderById.shad.name }}</h3>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ sortedFounders[1].name }}</h3>
             <div class="flex items-center gap-xs mt-xs">
-              <span class="font-label-bold text-[10px] text-secondary tracking-widest uppercase">{{ founderStats.shad.correct }} Correct Picks</span>
+              <span class="font-label-bold text-[10px] text-secondary tracking-widest uppercase">{{ sortedFounders[1].correct }} Correct Picks</span>
             </div>
-            <p class="text-primary font-bold text-body-lg mt-xs">{{ founderStats.shad.points }} PTS</p>
+            <p class="text-primary font-bold text-body-lg mt-xs">{{ sortedFounders[1].points }} PTS</p>
           </div>
         </div>
 
-        <!-- 1st Place: Chawanangwa (39 PTS) -->
-        <div class="order-1 md:order-2 w-full md:w-1/3 flex flex-col items-center">
+        <!-- 1st Place -->
+        <div v-if="sortedFounders[0]" class="order-1 md:order-2 w-full md:w-1/3 flex flex-col items-center">
           <div class="glass-card neon-border w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs transform scale-105 shadow-xl">
             <div class="absolute -top-8 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center font-bold text-headline-md glow-primary">1</div>
             <div class="w-24 h-24 rounded-full overflow-hidden mb-sm border-4 border-primary">
-              <img class="w-full h-full object-cover" :src="founderById.chawa.avatar"/>
+              <img class="w-full h-full object-cover" :src="sortedFounders[0].avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">{{ founderById.chawa.name }}</h3>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ sortedFounders[0].name }}</h3>
             <div class="flex items-center gap-xs mt-xs">
               <span class="material-symbols-outlined text-primary text-sm" data-icon="verified">verified</span>
               <span class="font-label-bold text-label-bold text-primary tracking-widest">Ball Knower</span>
             </div>
-            <p class="text-primary font-extrabold text-title-lg mt-xs">{{ founderStats.chawa.points }} PTS <span class="text-xs font-normal text-on-surface-variant">({{ founderStats.chawa.correct }} Picks)</span></p>
+            <p class="text-primary font-extrabold text-title-lg mt-xs">{{ sortedFounders[0].points }} PTS <span class="text-xs font-normal text-on-surface-variant">({{ sortedFounders[0].correct }} Picks)</span></p>
           </div>
         </div>
 
-        <!-- 3rd Place: Vincent (30 PTS) -->
-        <div class="order-3 md:order-3 w-full md:w-1/4 flex flex-col items-center">
+        <!-- 3rd Place -->
+        <div v-if="sortedFounders[2]" class="order-3 md:order-3 w-full md:w-1/4 flex flex-col items-center">
           <div class="glass-card w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs">
             <div class="absolute -top-6 bg-tertiary-container text-on-tertiary-container w-10 h-10 rounded-full flex items-center justify-center font-bold text-title-lg">3</div>
             <div class="w-20 h-20 rounded-full overflow-hidden mb-sm border-2 border-outline-variant">
-              <img class="w-full h-full object-cover" :src="founderById.vincent.avatar"/>
+              <img class="w-full h-full object-cover" :src="sortedFounders[2].avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">{{ founderById.vincent.name }}</h3>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ sortedFounders[2].name }}</h3>
             <div class="flex items-center gap-xs mt-xs">
-              <span class="font-label-bold text-[10px] text-on-surface-variant tracking-widest uppercase">{{ founderStats.vincent.correct }} Correct Picks</span>
+              <span class="font-label-bold text-[10px] text-on-surface-variant tracking-widest uppercase">{{ sortedFounders[2].correct }} Correct Picks</span>
             </div>
-            <p class="text-primary font-bold text-body-sm mt-xs">{{ founderStats.vincent.points }} PTS</p>
+            <p class="text-primary font-bold text-body-sm mt-xs">{{ sortedFounders[2].points }} PTS</p>
           </div>
         </div>
 
