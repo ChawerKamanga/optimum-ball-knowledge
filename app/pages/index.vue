@@ -73,7 +73,15 @@ const filteredMatches = computed(() => {
 
 // Toggle Stage Filters
 const toggleFilter = () => {
-  selectedStage.value = selectedStage.value === 'All' ? 'Round of 16' : selectedStage.value === 'Round of 16' ? 'Round of 32' : 'All'
+  if (selectedStage.value === 'All') {
+    selectedStage.value = 'Round of 32'
+  } else if (selectedStage.value === 'Round of 32') {
+    selectedStage.value = 'Round of 16'
+  } else if (selectedStage.value === 'Round of 16') {
+    selectedStage.value = 'Quarterfinal'
+  } else {
+    selectedStage.value = 'All'
+  }
 }
 </script>
 

@@ -16,7 +16,7 @@ export interface Match {
   pens: string | null;
   type: "Full Time" | "Penalties" | "Upcoming";
   winner: string | null;
-  predictions: Record<FounderId, string>;
+  predictions: Record<FounderId, string | null>; // Fixed: allowed null values
   points: Record<FounderId, number>;
 }
 
@@ -359,4 +359,84 @@ export const worldCupMatches: Match[] = [
     },
     points: { chawa: 3, shad: 3, vincent: 0 },
   },
+  {
+    date: '2026-07-09',
+    stage: 'Quarterfinal',
+    home: 'France',
+    away: 'Morocco',
+    score: null,
+    pens: null,
+    type: 'Upcoming',
+    winner: null,
+    predictions: {
+      chawa: null,
+      shad: null,
+      vincent: null
+    },
+    points: {
+      chawa: 0,
+      shad: 0,
+      vincent: 0
+    }
+  },
+  {
+    date: '2026-07-10',
+    stage: 'Quarterfinal',
+    home: 'Spain',
+    away: 'Belgium',
+    score: null,
+    pens: null,
+    type: 'Upcoming',
+    winner: null,
+    predictions: {
+      chawa: null,
+      shad: null,
+      vincent: null
+    },
+    points: {
+      chawa: 0,
+      shad: 0,
+      vincent: 0
+    }
+  },
+  {
+    date: '2026-07-11',
+    stage: 'Quarterfinal',
+    home: 'Norway',
+    away: 'England',
+    score: null,
+    pens: null,
+    type: 'Upcoming',
+    winner: null,
+    predictions: {
+      chawa: null,
+      shad: null,
+      vincent: null
+    },
+    points: {
+      chawa: 0,
+      shad: 0,
+      vincent: 0
+    }
+  },
+  {
+    date: '2026-07-11',
+    stage: 'Quarterfinal',
+    home: 'Argentina',
+    away: 'Switzerland',
+    score: null,
+    pens: null,
+    type: 'Upcoming',
+    winner: null,
+    predictions: {
+      chawa: null,
+      shad: null,
+      vincent: null
+    },
+    points: {
+      chawa: 0,
+      shad: 0,
+      vincent: 0
+    }
+  }
 ];

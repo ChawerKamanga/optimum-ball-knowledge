@@ -82,7 +82,6 @@ onMounted(() => {
     <main class="flex-grow pt-10 md:pt-24 px-4 md:px-gutter max-w-container-max mx-auto w-full">
       <!-- Back Navigation -->
       <div class="mb-8">
-        <!-- RESTORED YOUR CUSTOM TYPOGRAPHY TOKENS WITH RESPONSIVE SIZING -->
         <h1 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg mt-4 text-on-surface">
           The Championship Standings
         </h1>
@@ -95,57 +94,62 @@ onMounted(() => {
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="border-b border-outline-variant bg-surface-container-low">
-                <th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Rank
-                </th>
-                <th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
-                  Founder</th>
-                <th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Form
-                </th>
-                <th class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">
-                  Maverick Picks</th>
-                <th
-                  class="px-6 py-4 font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant text-right">
-                  Total Points</th>
+                <th class="px-3 py-3 md:px-6 md:py-4 font-label-sm text-xs md:text-label-sm uppercase tracking-widest text-on-surface-variant">Rank</th>
+                <th class="px-3 py-3 md:px-6 md:py-4 font-label-sm text-xs md:text-label-sm uppercase tracking-widest text-on-surface-variant">Founder</th>
+                <th class="px-3 py-3 md:px-6 md:py-4 font-label-sm text-xs md:text-label-sm uppercase tracking-widest text-on-surface-variant">Form</th>
+                <th class="px-3 py-3 md:px-6 md:py-4 font-label-sm text-xs md:text-label-sm uppercase tracking-widest text-on-surface-variant">Maverick Picks</th>
+                <th class="px-3 py-3 md:px-6 md:py-4 font-label-sm text-xs md:text-label-sm uppercase tracking-widest text-on-surface-variant text-right">Total Points</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-outline-variant">
               <tr v-for="(founder, index) in founderStats" :key="founder.id"
                 class="leaderboard-row transition-all duration-300"
                 :class="index === 0 ? 'border-2 border-transparent hover:border-primary-container relative' : ''">
-                <td class="px-6 py-8">
-                  <div class="flex items-center space-x-2">
-                    <span class="font-bold text-headline-lg"
+                
+                <!-- Rank -->
+                <td class="px-3 py-4 md:px-6 md:py-8">
+                  <div class="flex items-center space-x-1 md:space-x-2">
+                    <span class="font-bold text-base md:text-headline-lg"
                       :class="index === 0 ? 'text-primary' : 'text-on-surface-variant'">{{ index + 1 }}</span>
-                    <span v-if="index === 0" class="material-symbols-outlined text-primary"
+                    <span v-if="index === 0" class="material-symbols-outlined text-primary text-sm md:text-base"
                       style="font-variation-settings: 'FILL' 1;">crown</span>
                   </div>
                 </td>
-                <td class="px-6 py-8">
-                  <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 rounded-full overflow-hidden"
+
+                <!-- Founder -->
+                <td class="px-3 py-4 md:px-6 md:py-8">
+                  <div class="flex items-center space-x-2 md:space-x-4">
+                    <div class="w-8 h-8 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0"
                       :class="index === 0 ? 'border-2 border-primary' : 'border border-outline-variant'">
                       <img class="w-full h-full object-cover" :alt="founder.name" :src="founder.avatar" />
                     </div>
                     <div>
-                      <div class="font-headline-lg text-[20px] leading-tight text-on-surface">{{ founder.name }}</div>
-                      <div class="font-label-sm text-label-sm uppercase"
+                      <div class="font-headline-lg text-sm md:text-[20px] leading-tight text-on-surface break-words">{{ founder.name }}</div>
+                      <div class="font-label-sm text-[10px] md:text-label-sm uppercase tracking-wider"
                         :class="index === 0 ? 'text-primary' : 'text-on-surface-variant'">{{ founder.role }}</div>
                     </div>
                   </div>
                 </td>
-                <td class="px-6 py-8">
+
+                <!-- Form -->
+                <td class="px-3 py-4 md:px-6 md:py-8">
                   <div class="flex space-x-1">
                     <div v-for="(hit, formIndex) in founder.recentForm" :key="`${founder.id}-form-${formIndex}`"
-                      class="w-3 h-3 rounded-full"
+                      class="w-2 h-2 md:w-3 md:h-3 rounded-full"
                       :class="hit ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-error shadow-[0_0_8px_rgba(255,180,171,0.5)]'">
                     </div>
                   </div>
                 </td>
-                <td class="px-6 py-8 font-label-sm text-headline-lg text-on-surface">{{ founder.maverickWins }}</td>
-                <td class="px-6 py-8 text-right font-display-lg text-display-lg"
+
+                <!-- Maverick Picks -->
+                <td class="px-3 py-4 md:px-6 md:py-8 font-label-sm text-sm md:text-headline-lg text-on-surface">{{ founder.maverickWins }}</td>
+                
+                <!-- Total Points -->
+                <td class="px-3 py-4 md:px-6 md:py-8 text-right font-display-lg text-base md:text-display-lg"
                   :class="index === 0 ? 'text-primary gold-glow' : 'text-on-surface'">
                   {{ founder.totalPoints }}
                 </td>
+
               </tr>
             </tbody>
           </table>
