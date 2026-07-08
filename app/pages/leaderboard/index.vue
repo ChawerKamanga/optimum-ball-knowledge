@@ -40,7 +40,14 @@ const founderStats = computed(() => {
         maverickWins
       }
     })
-    .sort((a, b) => b.totalPoints - a.totalPoints)
+    .sort((a, b) => {
+      // First sort by total points
+      if (b.totalPoints !== a.totalPoints) {
+        return b.totalPoints - a.totalPoints
+      }
+      // If points are tied, sort by maverick wins
+      return b.maverickWins - a.maverickWins
+    })
 })
 
 const maverickLeader = computed(() => {
