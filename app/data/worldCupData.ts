@@ -1,4 +1,4 @@
-export type FounderId = "chawa" | "shad" | "vincent";
+export type FounderId = "chawa" | "shad" | "vincent" | "natasha";
 
 export interface FounderProfile {
   id: FounderId;
@@ -40,6 +40,12 @@ export const founderProfiles: FounderProfile[] = [
     role: "The Comeback King",
     avatar: "https://optimumsystemsmw.com/img/vin.jpeg",
   },
+  {
+    id: "natasha",
+    name: "Natasha",
+    role: "Growth Catalyst",
+    avatar: "https://res.cloudinary.com/dejkd5he6/image/upload/v1783607739/natasha_uo7uax.jpg", // Update with her correct avatar URL
+  },
 ];
 
 export const worldCupMatches: Match[] = [
@@ -52,8 +58,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Canada",
-    predictions: { chawa: "Canada", shad: "Canada", vincent: "Canada" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "Canada", shad: "Canada", vincent: "Canada", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-06-29",
@@ -64,8 +70,8 @@ export const worldCupMatches: Match[] = [
     pens: "3-4",
     type: "Penalties",
     winner: "Paraguay",
-    predictions: { chawa: "Germany", shad: "Germany", vincent: "Germany" },
-    points: { chawa: 0, shad: 0, vincent: 0 },
+    predictions: { chawa: "Germany", shad: "Germany", vincent: "Germany", natasha: null },
+    points: { chawa: 0, shad: 0, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-06-29",
@@ -80,8 +86,9 @@ export const worldCupMatches: Match[] = [
       chawa: "Morocco",
       shad: "Netherlands",
       vincent: "Netherlands",
+      natasha: null,
     },
-    points: { chawa: 3, shad: 0, vincent: 0 },
+    points: { chawa: 3, shad: 0, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-06-29",
@@ -92,8 +99,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Brazil",
-    predictions: { chawa: "Brazil", shad: "Brazil", vincent: "Brazil" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "Brazil", shad: "Brazil", vincent: "Brazil", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-06-30",
@@ -104,8 +111,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "France",
-    predictions: { chawa: "France", shad: "France", vincent: "France" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "France", shad: "France", vincent: "France", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-06-30",
@@ -116,8 +123,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Norway",
-    predictions: { chawa: "Norway", shad: "Norway", vincent: "Norway" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "Norway", shad: "Norway", vincent: "Norway", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-06-30",
@@ -128,8 +135,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Mexico",
-    predictions: { chawa: "Mexico", shad: "Mexico", vincent: "Mexico" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "Mexico", shad: "Mexico", vincent: "Mexico", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-01",
@@ -140,8 +147,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "England",
-    predictions: { chawa: "England", shad: "England", vincent: "England" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "England", shad: "England", vincent: "England", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-01",
@@ -156,8 +163,9 @@ export const worldCupMatches: Match[] = [
       chawa: "United States",
       shad: "United States",
       vincent: "United States",
+      natasha: null,
     },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-01",
@@ -168,8 +176,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Belgium",
-    predictions: { chawa: "Senegal", shad: "Belgium", vincent: "Senegal" },
-    points: { chawa: 0, shad: 3, vincent: 0 },
+    predictions: { chawa: "Senegal", shad: "Belgium", vincent: "Senegal", natasha: null },
+    points: { chawa: 0, shad: 3, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-07-02",
@@ -180,8 +188,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Portugal",
-    predictions: { chawa: "Portugal", shad: "Portugal", vincent: "Croatia" },
-    points: { chawa: 3, shad: 3, vincent: 0 },
+    predictions: { chawa: "Portugal", shad: "Portugal", vincent: "Croatia", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-07-02",
@@ -192,8 +200,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Spain",
-    predictions: { chawa: "Spain", shad: "Spain", vincent: "Spain" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "Spain", shad: "Spain", vincent: "Spain", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-02",
@@ -208,8 +216,9 @@ export const worldCupMatches: Match[] = [
       chawa: "Switzerland",
       shad: "Switzerland",
       vincent: "Algeria",
+      natasha: null,
     },
-    points: { chawa: 3, shad: 3, vincent: 0 },
+    points: { chawa: 3, shad: 3, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-07-03",
@@ -220,8 +229,8 @@ export const worldCupMatches: Match[] = [
     pens: "2-4",
     type: "Penalties",
     winner: "Egypt",
-    predictions: { chawa: "Australia", shad: "Egypt", vincent: "Australia" },
-    points: { chawa: 0, shad: 3, vincent: 0 },
+    predictions: { chawa: "Australia", shad: "Egypt", vincent: "Australia", natasha: null },
+    points: { chawa: 0, shad: 3, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-07-03",
@@ -236,8 +245,9 @@ export const worldCupMatches: Match[] = [
       chawa: "Argentina",
       shad: "Cape Verde",
       vincent: "Argentina",
+      natasha: null,
     },
-    points: { chawa: 3, shad: 0, vincent: 3 },
+    points: { chawa: 3, shad: 0, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-03",
@@ -248,8 +258,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Colombia",
-    predictions: { chawa: "Ghana", shad: "Ghana", vincent: "Colombia" },
-    points: { chawa: 0, shad: 0, vincent: 3 },
+    predictions: { chawa: "Ghana", shad: "Ghana", vincent: "Colombia", natasha: null },
+    points: { chawa: 0, shad: 0, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-04",
@@ -260,8 +270,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "France",
-    predictions: { chawa: "France", shad: "France", vincent: "France" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "France", shad: "France", vincent: "France", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-04",
@@ -272,8 +282,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Morocco",
-    predictions: { chawa: "Morocco", shad: "Canada", vincent: "Canada" },
-    points: { chawa: 3, shad: 0, vincent: 0 },
+    predictions: { chawa: "Morocco", shad: "Canada", vincent: "Canada", natasha: null },
+    points: { chawa: 3, shad: 0, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-07-05",
@@ -284,8 +294,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Norway",
-    predictions: { chawa: "Brazil", shad: "Norway", vincent: "Brazil" },
-    points: { chawa: 0, shad: 3, vincent: 0 },
+    predictions: { chawa: "Brazil", shad: "Norway", vincent: "Brazil", natasha: null },
+    points: { chawa: 0, shad: 3, vincent: 0, natasha: 0 },
   },
   {
     date: "2026-07-05",
@@ -296,8 +306,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "England",
-    predictions: { chawa: "England", shad: "England", vincent: "England" },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    predictions: { chawa: "England", shad: "England", vincent: "England", natasha: null },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-06",
@@ -308,8 +318,8 @@ export const worldCupMatches: Match[] = [
     pens: null,
     type: "Full Time",
     winner: "Spain",
-    predictions: { chawa: "Spain", shad: "Portugal", vincent: "Spain" },
-    points: { chawa: 3, shad: 0, vincent: 3 },
+    predictions: { chawa: "Spain", shad: "Portugal", vincent: "Spain", natasha: null },
+    points: { chawa: 3, shad: 0, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-06",
@@ -324,8 +334,9 @@ export const worldCupMatches: Match[] = [
       chawa: "United States",
       shad: "Belgium",
       vincent: "Belgium",
+      natasha: null,
     },
-    points: { chawa: 0, shad: 3, vincent: 3 },
+    points: { chawa: 0, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-07",
@@ -340,8 +351,9 @@ export const worldCupMatches: Match[] = [
       chawa: "Argentina",
       shad: "Argentina",
       vincent: "Argentina",
+      natasha: null,
     },
-    points: { chawa: 3, shad: 3, vincent: 3 },
+    points: { chawa: 3, shad: 3, vincent: 3, natasha: 0 },
   },
   {
     date: "2026-07-07",
@@ -356,8 +368,9 @@ export const worldCupMatches: Match[] = [
       chawa: "Switzerland",
       shad: "Switzerland",
       vincent: "Colombia",
+      natasha: null,
     },
-    points: { chawa: 3, shad: 3, vincent: 0 },
+    points: { chawa: 3, shad: 3, vincent: 0, natasha: 0 },
   },
   {
     date: '2026-07-09',
@@ -371,12 +384,14 @@ export const worldCupMatches: Match[] = [
     predictions: {
       chawa: "France",
       shad: "France",
-      vincent: null
+      vincent: "France",
+      natasha: "France"
     },
     points: {
       chawa: 0,
       shad: 0,
-      vincent: 0
+      vincent: 0,
+      natasha: 0
     }
   },
   {
@@ -391,12 +406,14 @@ export const worldCupMatches: Match[] = [
     predictions: {
       chawa: "Spain",
       shad: "Belgium",
-      vincent: null
+      vincent: "Spain",
+      natasha: "Spain"
     },
     points: {
       chawa: 0,
       shad: 0,
-      vincent: 0
+      vincent: 0,
+      natasha: 0
     }
   },
   {
@@ -411,12 +428,14 @@ export const worldCupMatches: Match[] = [
     predictions: {
       chawa: "England",
       shad: "Norway",
-      vincent: null
+      vincent: "England",
+      natasha: "Norway"
     },
     points: {
       chawa: 0,
       shad: 0,
-      vincent: 0
+      vincent: 0,
+      natasha: 0
     }
   },
   {
@@ -431,12 +450,14 @@ export const worldCupMatches: Match[] = [
     predictions: {
       chawa: "Argentina",
       shad: "Switzerland",
-      vincent: null
+      vincent: "Argentina",
+      natasha: "Switzerland"
     },
     points: {
       chawa: 0,
       shad: 0,
-      vincent: 0
+      vincent: 0,
+      natasha: 0
     }
   }
 ];

@@ -13,35 +13,39 @@ const founderById = computed(() => {
 })
 
 const founderStats = computed(() => {
-  const stats = {
-    chawa: { points: 0, correct: 0, maverickWins: 0 },
-    shad: { points: 0, correct: 0, maverickWins: 0 },
-    vincent: { points: 0, correct: 0, maverickWins: 0 }
-  }
+  // Initialize dynamic object keys from profiles to easily handle expansion
+  const stats = {}
+  founderProfiles.forEach(founder => {
+    stats[founder.id] = { points: 0, correct: 0, maverickWins: 0 }
+  })
 
   const completedMatches = matches.value.filter(match => match.score !== null)
 
   completedMatches.forEach(match => {
-    // Calculate points and correct picks
-    stats.chawa.points += match.points.chawa
-    stats.shad.points += match.points.shad
-    stats.vincent.points += match.points.vincent
+    founderProfiles.forEach(founder => {
+      const fid = founder.id
+      // Safely increment points if key exists
+      stats[fid].points += match.points[fid] || 0
 
-    if (match.points.chawa > 0) stats.chawa.correct += 1
-    if (match.points.shad > 0) stats.shad.correct += 1
-    if (match.points.vincent > 0) stats.vincent.correct += 1
+      if ((match.points[fid] || 0) > 0) {
+        stats[fid].correct += 1
+      }
+    })
 
-    // Calculate maverick wins
-    const predictionCounts = Object.values(match.predictions).reduce((acc, pick) => {
+    // Calculate maverick wins (ignoring null/non-predictions)
+    const validPicks = Object.values(match.predictions).filter(pick => pick !== null)
+    const predictionCounts = validPicks.reduce((acc, pick) => {
       acc[pick] = (acc[pick] || 0) + 1
       return acc
     }, {})
 
     Object.keys(stats).forEach(founderId => {
       const founderPick = match.predictions[founderId]
-      const isMaverickPick = predictionCounts[founderPick] === 1
-      if (isMaverickPick && match.points[founderId] > 0) {
-        stats[founderId].maverickWins += 1
+      if (founderPick) {
+        const isMaverickPick = predictionCounts[founderPick] === 1
+        if (isMaverickPick && (match.points[founderId] || 0) > 0) {
+          stats[founderId].maverickWins += 1
+        }
       }
     })
   })
@@ -81,14 +85,12 @@ const todayDateStr = computed(() => getTodayString())
 
 // Compute Smart Filtered Pipeline Order
 const filteredMatches = computed(() => {
-  // Scenario A: A specific round is filtered -> Show EVERYTHING in that round sorted chronologically
   if (selectedStage.value !== 'All') {
     return matches.value
       .filter(m => m.stage === selectedStage.value)
       .sort((a, b) => a.date.localeCompare(b.date))
   }
 
-  // Scenario B: Global overview ('All') -> Show snippet (1 next upcoming match + 2 latest completed results)
   const upcoming = matches.value
     .filter(m => m.score === null)
     .sort((a, b) => a.date.localeCompare(b.date))
@@ -119,7 +121,7 @@ const toggleFilter = () => {
 <template>
   <main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-lg">
     
-    <!-- SECTION 1: Founders Leaderboard Podium -->
+    <!-- SECTION 1: Founders Leaderboard Podium (Handles 4 entries fluidly) -->
     <section class="mb-xl">
       <div class="flex flex-col md:flex-row items-end justify-center gap-gutter md:gap-lg mt-lg">
         
@@ -169,6 +171,21 @@ const toggleFilter = () => {
           </div>
         </div>
 
+        <!-- 4th Place -->
+        <div v-if="sortedFounders[3]" class="order-4 md:order-4 w-full md:w-1/4 flex flex-col items-center">
+          <div class="glass-card w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs">
+            <div class="absolute -top-6 bg-surface-container-highest text-on-surface w-10 h-10 rounded-full flex items-center justify-center font-bold text-title-lg">4</div>
+            <div class="w-20 h-20 rounded-full overflow-hidden mb-sm border-2 border-outline-variant opacity-80">
+              <img class="w-full h-full object-cover" :src="sortedFounders[3].avatar"/>
+            </div>
+            <h3 class="font-headline-md text-headline-md text-on-background">{{ sortedFounders[3].name }}</h3>
+            <div class="flex items-center gap-xs mt-xs">
+              <span class="font-label-bold text-[10px] text-on-surface-variant tracking-widest uppercase">{{ sortedFounders[3].correct }} Correct Picks</span>
+            </div>
+            <p class="text-primary font-bold text-body-sm mt-xs">{{ sortedFounders[3].points }} PTS</p>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -191,7 +208,6 @@ const toggleFilter = () => {
       </div>
 
       <div class="grid grid-cols-1 gap-md">
-        <!-- Loop structural pipeline output -->
         <div 
           v-for="(match, index) in filteredMatches" 
           :key="index" 
@@ -227,7 +243,6 @@ const toggleFilter = () => {
 
           <!-- Team Flag / Display Rows -->
           <div class="p-lg flex items-center justify-between">
-            <!-- Home Team -->
             <div class="flex flex-col items-center w-1/3 gap-sm">
               <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center font-bold text-primary border border-outline-variant/30">
                 {{ match.home.substring(0, 3).toUpperCase() }}
@@ -235,7 +250,6 @@ const toggleFilter = () => {
               <span class="font-title-lg text-body-lg text-on-background font-medium">{{ match.home }}</span>
             </div>
 
-            <!-- Contextual Metrics Middle Scoreboard -->
             <div class="flex flex-col items-center gap-xs">
               <div v-if="match.score" class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary tracking-tighter">
                 {{ match.score }}
@@ -248,7 +262,6 @@ const toggleFilter = () => {
               </div>
             </div>
 
-            <!-- Away Team -->
             <div class="flex flex-col items-center w-1/3 gap-sm">
               <div class="w-12 h-12 rounded-full glass-card flex items-center justify-center font-bold text-primary border border-outline-variant/30">
                 {{ match.away.substring(0, 3).toUpperCase() }}
@@ -257,34 +270,21 @@ const toggleFilter = () => {
             </div>
           </div>
 
-          <!-- Matrix Point Allocations Grid -->
+          <!-- Matrix Point Allocations Grid (Loops cleanly across all 4 profiles) -->
           <div class="px-md pb-md">
-            <div class="grid grid-cols-3 gap-xs">
-              <!-- Chawa Profile Prediction Badge -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-xs">
               <div 
+                v-for="founder in founderProfiles"
+                :key="founder.id"
                 class="flex flex-col items-center p-xs rounded transition-all"
-                :class="match.score ? (match.points.chawa > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
+                :class="match.score ? ((match.points[founder.id] || 0) > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
               >
-                <span class="text-[9px] uppercase tracking-wider opacity-70">Chawa (+{{ match.points.chawa || 0 }}pts)</span>
-                <span class="font-label-bold text-[11px]">{{ match.predictions.chawa }}</span>
-              </div>
-
-              <!-- Shad Profile Prediction Badge -->
-              <div 
-                class="flex flex-col items-center p-xs rounded transition-all"
-                :class="match.score ? (match.points.shad > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
-              >
-                <span class="text-[9px] uppercase tracking-wider opacity-70">Shad (+{{ match.points.shad || 0 }}pts)</span>
-                <span class="font-label-bold text-[11px]">{{ match.predictions.shad }}</span>
-              </div>
-
-              <!-- Vincent Profile Prediction Badge -->
-              <div 
-                class="flex flex-col items-center p-xs rounded transition-all"
-                :class="match.score ? (match.points.vincent > 0 ? 'bg-primary/20 text-primary font-semibold' : 'bg-surface-container text-on-surface-variant opacity-50') : 'bg-surface-container text-on-surface-variant border border-dashed border-outline-variant/40'"
-              >
-                <span class="text-[9px] uppercase tracking-wider opacity-70">Vincent (+{{ match.points.vincent || 0 }}pts)</span>
-                <span class="font-label-bold text-[11px]">{{ match.predictions.vincent }}</span>
+                <span class="text-[9px] uppercase tracking-wider opacity-70">
+                  {{ founder.name }} (+{{ match.points[founder.id] || 0 }}pts)
+                </span>
+                <span class="font-label-bold text-[11px]">
+                  {{ match.predictions[founder.id] || '—' }}
+                </span>
               </div>
             </div>
           </div>
