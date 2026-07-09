@@ -369,8 +369,8 @@ export const worldCupMatches: Match[] = [
     type: 'Upcoming',
     winner: null,
     predictions: {
-      chawa: null,
-      shad: null,
+      chawa: "France",
+      shad: "France",
       vincent: null
     },
     points: {
@@ -389,8 +389,8 @@ export const worldCupMatches: Match[] = [
     type: 'Upcoming',
     winner: null,
     predictions: {
-      chawa: null,
-      shad: null,
+      chawa: "Spain",
+      shad: "Belgium",
       vincent: null
     },
     points: {
@@ -409,8 +409,8 @@ export const worldCupMatches: Match[] = [
     type: 'Upcoming',
     winner: null,
     predictions: {
-      chawa: null,
-      shad: null,
+      chawa: "England",
+      shad: "Norway",
       vincent: null
     },
     points: {
@@ -429,8 +429,8 @@ export const worldCupMatches: Match[] = [
     type: 'Upcoming',
     winner: null,
     predictions: {
-      chawa: null,
-      shad: null,
+      chawa: "Argentina",
+      shad: "Switzerland",
       vincent: null
     },
     points: {
