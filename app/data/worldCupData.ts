@@ -26,7 +26,7 @@ export const founderProfiles: FounderProfile[] = [
     name: "Chawanangwa",
     role: "Pirate King",
     avatar:
-      "https://res.cloudinary.com/dejkd5he6/image/upload/v1783608882/overview_image_135556916_344147_bfrqdy.png",
+      "https://res.cloudinary.com/dejkd5he6/image/upload/v1783609131/overview_image_135556916_344147_bfrqdy_2_n40npb.jpg",
   },
   {
     id: "shad",
