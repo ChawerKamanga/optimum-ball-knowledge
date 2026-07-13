@@ -288,6 +288,7 @@ const toggleFilter = () => {
                   {{ match.predictions[founder.id] || '—' }}
                 </span>
               </div>
+              
             </div>
           </div>
 
