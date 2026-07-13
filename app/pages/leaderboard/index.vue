@@ -81,6 +81,8 @@ const toggleFilter = () => {
     selectedStage.value = 'Round of 16'
   } else if (selectedStage.value === 'Round of 16') {
     selectedStage.value = 'Quarterfinal'
+  } else if (selectedStage.value === 'Quarterfinal') {
+    selectedStage.value = 'Semifinal'
   } else {
     selectedStage.value = 'All'
   }

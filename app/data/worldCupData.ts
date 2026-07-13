@@ -556,10 +556,10 @@ export const worldCupMatches: Match[] = [
     type: "Upcoming",
     winner: null,
     predictions: {
-      chawa: null,
-      shad: null,
-      vincent: null,
-      natasha: null,
+      chawa: "France",
+      shad: "France",
+      vincent: "France",
+      natasha: "France",
     },
     points: {
       chawa: 0,
@@ -578,10 +578,10 @@ export const worldCupMatches: Match[] = [
     type: "Upcoming",
     winner: null,
     predictions: {
-      chawa: null,
-      shad: null,
-      vincent: null,
-      natasha: null,
+      chawa: "Argentina",
+      shad: "Argentina",
+      vincent: "England",
+      natasha: "Argentina",
     },
     points: {
       chawa: 0,
