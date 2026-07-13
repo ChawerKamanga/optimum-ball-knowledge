@@ -557,7 +557,7 @@ export const worldCupMatches: Match[] = [
     winner: null,
     predictions: {
       chawa: "France",
-      shad: "France",
+      shad: "Spain",
       vincent: "France",
       natasha: "France",
     },
@@ -579,7 +579,7 @@ export const worldCupMatches: Match[] = [
     winner: null,
     predictions: {
       chawa: "Argentina",
-      shad: "Argentina",
+      shad: "England",
       vincent: "England",
       natasha: "Argentina",
     },
