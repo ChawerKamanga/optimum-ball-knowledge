@@ -551,10 +551,10 @@ export const worldCupMatches: Match[] = [
     stage: "Semifinal",
     home: "France",
     away: "Spain",
-    score: null,
+    score: "0-2",
     pens: null,
-    type: "Upcoming",
-    winner: null,
+    type: "Completed",
+    winner: "Spain",
     predictions: {
       chawa: "France",
       shad: "Spain",
@@ -563,7 +563,7 @@ export const worldCupMatches: Match[] = [
     },
     points: {
       chawa: 0,
-      shad: 0,
+      shad: 3,
       vincent: 0,
       natasha: 0,
     },
