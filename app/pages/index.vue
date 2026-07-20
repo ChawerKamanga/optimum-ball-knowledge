@@ -144,17 +144,29 @@ const toggleFilter = () => {
 
         <!-- 1st Place -->
         <div v-if="sortedFounders[0]" class="order-1 md:order-2 w-full md:w-1/3 flex flex-col items-center">
-          <div class="glass-card neon-border w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs transform scale-105 shadow-xl">
-            <div class="absolute -top-8 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center font-bold text-headline-md glow-primary">1</div>
-            <div class="w-24 h-24 rounded-full overflow-hidden mb-sm border-4 border-primary">
+          <div class="glass-card neon-border champion-card w-full p-md rounded-xl flex flex-col items-center text-center relative mb-xs transform scale-105 shadow-xl overflow-hidden">
+            
+            <!-- Floating Balloons & Party Poppers Celebration Effect -->
+            <div class="absolute inset-0 pointer-events-none overflow-hidden select-none z-30">
+              <span class="party-item b1">🎈</span>
+              <span class="party-item b2">🎉</span>
+              <span class="party-item b3">🥳</span>
+              <span class="party-item b4">🎊</span>
+              <span class="party-item b5">🎈</span>
+              <span class="party-item b6">🎉</span>
+              <span class="party-item b7">🥳</span>
+            </div>
+
+            <div class="absolute -top-8 bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center font-bold text-headline-md glow-primary z-10">1</div>
+            <div class="w-24 h-24 rounded-full overflow-hidden mb-sm border-4 border-primary z-10">
               <img class="w-full h-full object-cover" :src="sortedFounders[0].avatar"/>
             </div>
-            <h3 class="font-headline-md text-headline-md text-on-background">{{ sortedFounders[0].name }}</h3>
-            <div class="flex items-center gap-xs mt-xs">
-              <span class="material-symbols-outlined text-primary text-sm" data-icon="verified">verified</span>
-              <span class="font-label-bold text-label-bold text-primary tracking-widest">Ball Knower</span>
+            <h3 class="font-headline-md text-headline-md text-on-background z-10">{{ sortedFounders[0].name }}</h3>
+            <div class="flex items-center gap-xs mt-xs z-10">
+              <span class="material-symbols-outlined text-primary text-sm animate-bounce" data-icon="verified">verified</span>
+              <span class="font-label-bold text-label-bold text-primary tracking-widest">🏆 GRAND CHAMPION</span>
             </div>
-            <p class="text-primary font-extrabold text-title-lg mt-xs">{{ sortedFounders[0].points }} PTS <span class="text-xs font-normal text-on-surface-variant">({{ sortedFounders[0].correct }} Picks)</span></p>
+            <p class="text-primary font-extrabold text-title-lg mt-xs z-10">{{ sortedFounders[0].points }} PTS <span class="text-xs font-normal text-on-surface-variant">({{ sortedFounders[0].correct }} Picks)</span></p>
           </div>
         </div>
 
@@ -297,3 +309,61 @@ const toggleFilter = () => {
     </section>
   </main>
 </template>
+
+<style scoped>
+/* Let's make some visual noise! Dancing card effect for the champion */
+.champion-card {
+  animation: makeNoise 3s ease-in-out infinite alternate;
+}
+
+.party-item {
+  position: absolute;
+  bottom: -40px;
+  font-size: 1.85rem;
+  opacity: 0;
+  z-index: 50; /* Ensuring balloons are physically on top of everything inside the card */
+  animation: explodeUp 4.5s infinite ease-out;
+}
+
+/* Dynamic staggering for a wild, chaotic party atmosphere */
+.b1 { left: 8%; animation-delay: 0s; animation-duration: 3.8s; }
+.b2 { left: 22%; animation-delay: 1.2s; animation-duration: 4.8s; }
+.b3 { left: 40%; animation-delay: 0.4s; animation-duration: 4.2s; }
+.b4 { left: 58%; animation-delay: 2s; animation-duration: 5s; }
+.b5 { left: 72%; animation-delay: 0.7s; animation-duration: 3.9s; }
+.b6 { left: 88%; animation-delay: 1.6s; animation-duration: 4.6s; }
+.b7 { left: 50%; animation-delay: 2.5s; animation-duration: 4.1s; }
+
+@keyframes explodeUp {
+  0% {
+    transform: translateY(0) scale(0.5) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-340px) scale(1.3) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* Card dancing/rocking animation to simulate a lively crowd */
+@keyframes makeNoise {
+  0% {
+    transform: scale(1.05) rotate(-1deg);
+    box-shadow: 0 20px 25px -5px rgba(225,182,56,0.2), 0 10px 10px -5px rgba(225,182,56,0.1);
+  }
+  50% {
+    transform: scale(1.07) translateY(-4px) rotate(1deg);
+    box-shadow: 0 25px 30px -5px rgba(225,182,56,0.35), 0 15px 15px -5px rgba(225,182,56,0.2);
+  }
+  100% {
+    transform: scale(1.05) rotate(-0.5deg);
+    box-shadow: 0 20px 25px -5px rgba(225,182,56,0.2), 0 10px 10px -5px rgba(225,182,56,0.1);
+  }
+}
+</style>
